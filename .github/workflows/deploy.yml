@@ -20,8 +20,13 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
-          ssh -i private_key.pem -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST '
+          ssh -i private_key.pem -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST <<EOF
           cd /home/ubuntu/10-dars/loyiha4
+          echo "PORT=${PORT}" > .env
+          echo "DATABASE_URL=${DATABASE_URL}" >> .env
+          echo "DATABASE_USER=${DATABASE_USER}" >> .env
+          echo "DATABASE_PASSWORD=${DATABASE_PASSWORD}" >> .env
+          echo "DATABASE_DB=${DATABASE_DB}" >> .env
           git pull origin main 
           echo "Removing old containers and images..."
           docker-compose down --volumes --remove-orphans
