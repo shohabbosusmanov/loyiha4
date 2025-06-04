@@ -6,7 +6,7 @@ export class AppService {
   constructor(private readonly prisma: PrismaService) {}
 
   getHello(): string {
-    return 'Hello World! 44';
+    return 'Hello World! 4';
   }
 
   async connectToDatabase() {
