@@ -9,6 +9,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
+      PORT: ${PORT}
       DATABASE_URL: ${DATABASE_URL}
   postgres:
     image: postgres:17.5
